@@ -1,0 +1,43 @@
+{{ define "create_product" }}
+    {{ template "header" . }}
+    <div class="container row p-5">
+        <div class="col-3"></div>
+        <form method="post" class="col-6" action="/create_product">
+            <!-- 产品名称 -->
+            <div class="mb-3">
+                <label for="name" class="form-label">Product Name {{template "required"}}</label>
+                <input type="text" name="name" class="form-control" id="name" required>
+            </div>
+
+            <!-- 产品描述 -->
+            <div class="mb-3">
+                <label for="description" class="form-label">Description {{template "required"}}</label>
+                <textarea name="description" class="form-control" id="description" rows="3" required></textarea>
+            </div>
+
+            <!-- 产品图片 -->
+            <div class="mb-3">
+                <label for="picture" class="form-label">Picture URL {{template "required"}}</label>
+                <input type="text" name="picture" class="form-control" id="picture" required>
+            </div>
+
+            <!-- 产品价格 -->
+            <div class="mb-3">
+                <label for="Price" class="form-label">Price {{template "required"}}</label>
+                <input type="number" name="Price" class="form-control" id="Price" required step="0.01">
+            </div>
+
+            <!-- 产品价格 -->
+            <div class="mb-3">
+                <label for="Cate" class="form-label">Cate {{template "required"}}</label>
+                <input type="description" name="Cate" class="form-control" id="Cate" required>
+            </div>
+            <!-- 提交按钮 -->
+            <div>
+                <button type="submit" class="btn btn-primary">Create Product</button>
+            </div>
+        </form>
+        <div class="col-3"></div>
+    </div>
+    {{ template "footer" . }}
+{{ end }}

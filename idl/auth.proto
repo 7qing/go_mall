@@ -1,0 +1,47 @@
+syntax="proto3";
+
+package auth;
+
+option go_package="/auth";
+
+// 定义认证服务
+service AuthService {
+  // 分发身份令牌
+  rpc DeliverTokenByRPC(DeliverTokenReq) returns (DeliveryResp) {}
+
+  // 校验身份令牌
+  rpc VerifyTokenByRPC(VerifyTokenReq) returns (VerifyResp) {}
+
+  // 续期身份令牌
+  rpc RenewTokenByRPC(RenewTokenReq) returns (DeliveryResp) {}
+
+}
+
+// 请求获取身份令牌的消息
+message DeliverTokenReq {
+  int32 user_id = 1;  // 用户ID
+}
+
+// 校验令牌请求的消息
+message VerifyTokenReq {
+  string token = 1;  // 要验证的身份令牌
+}
+
+// 令牌分发响应
+message DeliveryResp {
+  string token = 1;  // 返回的身份令牌
+}
+
+// 校验令牌响应
+message VerifyResp {
+  bool res = 1;  // 校验结果，true 表示合法，false 表示无效
+  int32 user_id = 2;  // 返回用户ID
+  string role = 3; // 用户角色（用于权限认证）
+}
+
+// 续期身份令牌的请求消息
+message RenewTokenReq {
+  string refresh_token = 1;  // 用于续期的 refresh token
+}
+
+
